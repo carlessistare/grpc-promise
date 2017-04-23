@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+- '7'
+- '6'
+- '5'
+before_script:
+- npm install -g gulp
+script:
+- npm test
+deploy:
+  provider: npm
+  email: carles.sistare@googlemail.com
+  api_key:
+    secure: RUtkEH/ozz96MHsEFmXoIx50KGAOLKx8f8736yNYCwtm/wX9/K2bqrdd8Basn3xyulqXmDmQpxODedF5uhMZldF5RQuBtMRMSSMN5hSs0iuht7gY5pPtHDKGWx93o0SrTcdQOFLzZZnuE0Htz787U2VPbFRhCT0NiIcKL/UHspzU/FiU3EC3Vgia/gi9mFDjyIDw66eWc9olQd0Csgw7g996uWsYw150jtYodbsYyJ32UZSRqISdBo1u5jImbFKKZ7vEbRKcoxFw4W4sHBIlLHKBt4zRn9IMzXKi31DTi8DtfFEN9Gf5dX8X60SvoyiHoBZct1P0m1zZYh2Hv5E+iIB25CfpbPU9W9Jbk2A9uxDF35SfAAPT3v0YqPxCxu1CN7PvlG/rKax11Mbdu0fsO7PrS/qtwbC1ywU3ZQd1H0IIHQksgojXD3S6gTL+quZXPbesf2+obiMa1yItiyn1CjUfAZMiFDzufV13rilukuwS+YkAXQp4bQY4L5+P8VZjGC739mMfwy7aKhJLA9EZBpOGOh3dB/Rd8OFGspqcrgJV8eOEA3wKlh+hgOe6NlCMASDK1im8qmvFQFVC9YI3YWRKKIHK5IEz0jum15MUPtr8daitzyTk1m4ZsFgM3yxlI4L9GtFfN26sgtrCEuIuhYgr0w6w2uxK4DNGwuS7fe8=
+  on:
+    tags: true
+    repo: carlessistare/grpc-promise
