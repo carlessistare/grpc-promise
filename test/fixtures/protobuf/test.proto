@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package test;
+
+service Test {
+
+    rpc TestStreamStream (stream TestRequest) returns (stream TestResponse) {}
+
+    rpc TestStreamSimple (stream TestRequest) returns (TestResponse) {}
+
+    rpc TestSimpleSimple (TestRequest) returns (TestResponse) {}
+
+}
+
+message TestRequest {
+    int32 id = 1;
+}
+
+message TestResponse {
+    int32 id = 1;
+}
