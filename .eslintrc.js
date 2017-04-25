@@ -58,6 +58,15 @@ module.exports = {
     "func-call-spacing": [
       "error",
       "never"
-    ]
+    ],
+    "arrow-body-style": [
+      "error",
+      "as-needed"
+    ],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "arrow-spacing": "error"
   }
 };
