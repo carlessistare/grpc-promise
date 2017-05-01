@@ -67,6 +67,12 @@ module.exports = {
       "error",
       "as-needed"
     ],
-    "arrow-spacing": "error"
+    "arrow-spacing": "error",
+    "no-console": [
+      "error", { "allow": [
+        "warn",
+        "error"
+      ]}
+    ]
   }
 };

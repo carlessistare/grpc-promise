@@ -26,7 +26,7 @@ describe('Client Stream Request', function () {
     let client = {};
     Object.setPrototypeOf(client, {
       clientStreamReq: function makeClientStreamRequest (callback) {
-        let stream = new ClientStreamMock();
+        var stream = new ClientStreamMock();
         stream.on('finish', function () {
           callback('some_error');
         });
