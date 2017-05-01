@@ -7,6 +7,9 @@ before_script:
 - npm install -g gulp
 script:
 - npm test
+- ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -r should test/**/*.js
+after_success:
+- cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:
   provider: npm
   email: carles.sistare@googlemail.com

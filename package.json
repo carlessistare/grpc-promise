@@ -1,6 +1,6 @@
 {
   "name": "grpc-promise",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "GRPC promisify module for all Request/Response types: standard and stream",
   "main": "lib/index.js",
   "scripts": {
@@ -24,11 +24,13 @@
   },
   "homepage": "https://github.com/carlessistare/grpc-promise#readme",
   "devDependencies": {
+    "coveralls": "2.13.0",
     "eslint": "3.19.0",
-    "eslint-config-google": "^0.7.1",
     "gulp": "3.9.1",
     "gulp-eslint": "3.0.1",
     "gulp-mocha": "4.3.0",
-    "mocha": "3.2.0"
+    "mocha": "3.2.0",
+    "should": "11.2.1",
+    "sinon": "2.1.0"
   }
 }

@@ -3,15 +3,19 @@ const eslint = require('gulp-eslint');
 const mocha = require('gulp-mocha');
 
 gulp.task('lint', function() {
-  return gulp.src(['./test/**/*.js', './lib/**/*.js'])
+  return gulp.src(['test/**/*.js', 'lib/**/*.js'])
     .pipe(eslint())
     .pipe(eslint.format('table'))
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('mocha', ['lint'], function() {
-  return gulp.src('./test/**/*.coffee')
-    .pipe(mocha());
+
+gulp.task('test', ['lint'], function () {
+  return gulp.src(['test/**/*.js'])
+    .pipe(mocha({require: ['should']}));
 });
 
-gulp.task('test', ['mocha'], function() {});
+gulp.task('test-no-lint', function () {
+  return gulp.src(['test/**/*.js'])
+    .pipe(mocha());
+});
