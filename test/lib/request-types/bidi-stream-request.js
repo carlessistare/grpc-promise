@@ -57,4 +57,22 @@ describe('Bidi Stream Request', function () {
       .catch(err => err.should.equal('timeout'));
   });
 
+  it('If a lot of delay and a lot of timeout, test ko', function () {
+    let client = {};
+    Object.setPrototypeOf(client, {
+      bidiStreamReq: function makeBidiStreamRequest () {
+        return new BidiStreamMock({delay: 75});
+      }
+    });
+
+    grpc_promise.promisifyAll(client, {timeout: 80});
+
+    const s = client.bidiStreamReq();
+    return Promise.all([s.sendMessage({}), s.sendMessage({})])
+      .then(res => {
+        res[0].id.should.equal(0);
+        res[1].id.should.equal(1);
+      });
+  });
+
 });
