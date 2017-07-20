@@ -1,5 +1,5 @@
-var stream = require('stream');
-var util = require('util');
+const stream = require('stream');
+const util = require('util');
 
 const BidiStreamMock = function (options) {
   if (options == null) {
@@ -12,9 +12,9 @@ const BidiStreamMock = function (options) {
 util.inherits(BidiStreamMock, stream.Duplex);
 
 BidiStreamMock.prototype._read = function readBytes () {
-  var self = this;
+  const self = this;
   while (this.readArr.length) {
-    var chunk = this.readArr.shift();
+    const chunk = this.readArr.shift();
     this.push(chunk);
     if (!this.readArr.length) {
       return;
@@ -24,7 +24,7 @@ BidiStreamMock.prototype._read = function readBytes () {
 };
 
 BidiStreamMock.prototype._write = function (chunk, enc, cb) {
-  var self = this;
+  const self = this;
   if (this.delay) {
     setTimeout(function (c) {
       this.readArr.push(c);

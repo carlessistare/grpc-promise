@@ -3,11 +3,14 @@ const grpc_promise = require('../../../lib/index');
 describe('Unary Request', function () {
 
   it('Test ok', function () {
-    let client = {};
+    const client = {};
+    const makeUnaryRequest = function (request, callback) {
+      callback(null, request);
+    };
+    makeUnaryRequest.requestStream = false;
+    makeUnaryRequest.responseStream = false;
     Object.setPrototypeOf(client, {
-      unaryReq: function makeUnaryRequest (request, callback) {
-        callback(null, request);
-      }
+      unaryReq: makeUnaryRequest
     });
 
     grpc_promise.promisifyAll(client);
@@ -18,11 +21,14 @@ describe('Unary Request', function () {
   });
 
   it('Test ko', function () {
-    let client = {};
+    const client = {};
+    const makeUnaryRequest = function (request, callback) {
+      callback('timeout');
+    };
+    makeUnaryRequest.requestStream = false;
+    makeUnaryRequest.responseStream = false;
     Object.setPrototypeOf(client, {
-      unaryReq: function makeUnaryRequest (request, callback) {
-        callback('timeout', null);
-      }
+      unaryReq: makeUnaryRequest
     });
 
     grpc_promise.promisifyAll(client);

@@ -1,5 +1,5 @@
-var stream = require('stream');
-var util = require('util');
+const stream = require('stream');
+const util = require('util');
 
 const ServerStreamMock = function (options) {
   if (options == null) {
@@ -11,13 +11,13 @@ const ServerStreamMock = function (options) {
 util.inherits(ServerStreamMock, stream.Readable);
 
 ServerStreamMock.prototype._read = function readBytes () {
-  var self = this;
+  const self = this;
   if (!this.response) {
     this.emit('error', 'some_error');
     return;
   }
   while (this.response.length) {
-    var chunk = this.response.shift();
+    const chunk = this.response.shift();
     this.push(chunk);
     if (!this.response.length) {
       this.emit('end');
