@@ -4,11 +4,14 @@ const grpc_promise = require('../../../lib/index');
 describe('Server Stream Request', function () {
 
   it('Test ok', function () {
-    let client = {};
+    const client = {};
+    const makeServerStreamRequest = function () {
+      return new ServerStreamMock({response: [{id: 1}, {id: 2}]});
+    };
+    makeServerStreamRequest.requestStream = false;
+    makeServerStreamRequest.responseStream = true;
     Object.setPrototypeOf(client, {
-      serverStreamReq: function makeServerStreamRequest () {
-        return new ServerStreamMock({response: [{id: 1}, {id: 2}]});
-      }
+      serverStreamReq: makeServerStreamRequest
     });
 
     grpc_promise.promisifyAll(client);
@@ -23,11 +26,14 @@ describe('Server Stream Request', function () {
   });
 
   it('Test ko', function () {
-    let client = {};
+    const client = {};
+    const makeServerStreamRequest = function () {
+      return new ServerStreamMock();
+    };
+    makeServerStreamRequest.requestStream = false;
+    makeServerStreamRequest.responseStream = true;
     Object.setPrototypeOf(client, {
-      serverStreamReq: function makeServerStreamRequest () {
-        return new ServerStreamMock();
-      }
+      serverStreamReq: makeServerStreamRequest
     });
 
     grpc_promise.promisifyAll(client);
