@@ -5,7 +5,10 @@ const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
 function main() {
   const client = new test_proto.Test('localhost:50052', grpc.credentials.createInsecure());
 
-  grpc_promise.promisifyAll(client);
+  const meta = new grpc.Metadata();
+  meta.add('key', 'value');
+
+  grpc_promise.promisifyAll(client, {metadata: meta});
 
   client.testSimpleStream()
     .sendMessage({id: 1})
