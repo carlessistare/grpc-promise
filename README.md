@@ -17,6 +17,7 @@
   - [Client Stream Request](#client-stream-request)
   - [Server Stream Request](#server-stream-request)
   - [Bidirectional Stream Request](#bidirectional-stream-request)
+  - [Request with Metadata](#request-with-metadata)
 - [MIT License](#mit-license)
 
 ## What's [gRPC](http://www.grpc.io/)?
