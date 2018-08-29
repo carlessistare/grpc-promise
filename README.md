@@ -98,6 +98,7 @@ message TestResponse {
 Implementation of `TestSimpleSimple` message
 
 Server side:
+
 ```js
 const grpc = require('grpc');
 const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
@@ -121,6 +122,7 @@ main();
 ```
 
 Client side:
+
 ```js
 const grpc = require('grpc');
 const grpc_promise = require('grpc-promise');
@@ -148,6 +150,7 @@ main();
 Implementation of `TestStreamSimple` message
 
 Server side:
+
 ```js
 const grpc = require('grpc');
 const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
@@ -177,6 +180,7 @@ main();
 ```
 
 Client side:
+
 ```js
 const grpc = require('grpc');
 const grpc_promise = require('grpc-promise');
@@ -207,6 +211,7 @@ main();
 Implementation of `TestSimpleStream` message
 
 Server side:
+
 ```js
 const grpc = require('grpc');
 const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
@@ -232,6 +237,7 @@ main();
 ```
 
 Client side:
+
 ```js
 const grpc = require('grpc');
 const grpc_promise = require('grpc-promise');
@@ -262,6 +268,7 @@ Implementation of `TestStreamStream` message
 the server implementation needs to answer with the same id received   
 
 Server side:
+
 ```js
 const grpc = require('grpc');
 const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
@@ -295,6 +302,7 @@ main();
 ```
 
 Client side:
+
 ```js
 const grpc = require('grpc');
 const grpc_promise = require('grpc-promise');
@@ -319,6 +327,35 @@ function main() {
     .catch(err => console.error(err))
   ;
   t.end();
+}
+
+main();
+```
+
+### Request with Metadata
+
+Client side:
+
+```js
+const grpc = require('grpc');
+const grpc_promise = require('grpc-promise');
+const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
+
+function main() {
+  const client = new test_proto.Test('localhost:50052', grpc.credentials.createInsecure());
+  
+  const meta = new grpc.Metadata();
+  meta.add('key', 'value');
+
+  grpc_promise.promisifyAll(client, {metadata: meta});
+    
+  client.testSimpleSimple()
+    .sendMessage({id: 1})
+    .then(res => {
+      console.log('Client: Simple Message Received = ', res) // Client: Simple Message Received = {id: 1}
+    })
+    .catch(err => console.error(err))
+  ;
 }
 
 main();

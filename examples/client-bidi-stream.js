@@ -5,7 +5,10 @@ const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
 function main() {
   const client = new test_proto.Test('localhost:50052', grpc.credentials.createInsecure());
 
-  grpc_promise.promisifyAll(client, {timeout: 100}); // Optional timeout definition, defaults = 50
+  const meta = new grpc.Metadata();
+  meta.add('key', 'value');
+
+  grpc_promise.promisifyAll(client, {timeout: 100, metadata: meta}); // Optional timeout definition, defaults = 50
 
   let t = client.testStreamStream();
   t.sendMessage({})
