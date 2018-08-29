@@ -1,6 +1,6 @@
 {
   "name": "grpc-promise",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "GRPC promisify module for all Request/Response types: standard and stream",
   "main": "lib/index.js",
   "scripts": {
