@@ -18,6 +18,7 @@
   - [Server Stream Request](#server-stream-request)
   - [Bidirectional Stream Request](#bidirectional-stream-request)
   - [Request with Metadata](#request-with-metadata)
+  - [Promisify single function](#promisify-single-function)
 - [MIT License](#mit-license)
 
 ## What's [gRPC](http://www.grpc.io/)?
@@ -350,6 +351,35 @@ function main() {
 
   grpc_promise.promisifyAll(client, {metadata: meta});
     
+  client.testSimpleSimple()
+    .sendMessage({id: 1})
+    .then(res => {
+      console.log('Client: Simple Message Received = ', res) // Client: Simple Message Received = {id: 1}
+    })
+    .catch(err => console.error(err))
+  ;
+}
+
+main();
+```
+
+### Promisify single function
+
+Client side:
+
+```js
+const grpc = require('grpc');
+const grpc_promise = require('grpc-promise');
+const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
+
+function main() {
+  const client = new test_proto.Test('localhost:50052', grpc.credentials.createInsecure());
+
+  const meta = new grpc.Metadata();
+  meta.add('key', 'value');
+
+  grpc_promise.promisify(client, ['testSimpleSimple'] {metadata: meta});
+
   client.testSimpleSimple()
     .sendMessage({id: 1})
     .then(res => {
