@@ -126,7 +126,6 @@ describe('Bidi Stream Request', function () {
               done();
             }
           });
-
         });
     });
 
