@@ -102,7 +102,21 @@ Server side:
 
 ```js
 const grpc = require('grpc');
-const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
+const protoLoader = require('@grpc/proto-loader');
+
+const packageDefinition = protoLoader.loadSync(
+  __dirname + '/protobuf/test.proto',
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+  }
+);
+
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
+const test_proto = protoDescriptor.test;
 
 const testSimpleSimple = function (call, callback) {
   console.log('Server: Simple Message Received = ', call.request); // Server: Simple Message Received = {id: 1}
@@ -126,8 +140,22 @@ Client side:
 
 ```js
 const grpc = require('grpc');
-const grpc_promise = require('grpc-promise');
-const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
+const protoLoader = require('@grpc/proto-loader');
+const grpc_promise = require('grpc-promise');;
+
+const packageDefinition = protoLoader.loadSync(
+  __dirname + '/protobuf/test.proto',
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+  }
+);
+
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
+const test_proto = protoDescriptor.test;
 
 function main() {
   const client = new test_proto.Test('localhost:50052', grpc.credentials.createInsecure());
@@ -154,7 +182,21 @@ Server side:
 
 ```js
 const grpc = require('grpc');
-const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
+const protoLoader = require('@grpc/proto-loader');
+
+const packageDefinition = protoLoader.loadSync(
+  __dirname + '/protobuf/test.proto',
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+  }
+);
+
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
+const test_proto = protoDescriptor.test;
 
 const testStreamSimple = function (call, callback) {
   var messages = [];
@@ -184,8 +226,22 @@ Client side:
 
 ```js
 const grpc = require('grpc');
+const protoLoader = require('@grpc/proto-loader');
 const grpc_promise = require('grpc-promise');
-const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
+
+const packageDefinition = protoLoader.loadSync(
+  __dirname + '/protobuf/test.proto',
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+  }
+);
+
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
+const test_proto = protoDescriptor.test;
 
 function main() {
   const client = new test_proto.Test('localhost:50052', grpc.credentials.createInsecure());
@@ -215,7 +271,21 @@ Server side:
 
 ```js
 const grpc = require('grpc');
-const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
+const protoLoader = require('@grpc/proto-loader');
+
+const packageDefinition = protoLoader.loadSync(
+  __dirname + '/protobuf/test.proto',
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+  }
+);
+
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
+const test_proto = protoDescriptor.test;
 
 const testSimpleStream = function (call) {
   console.log('Server: Simple Message Received = ', call.request); // Server: Simple Message Received = {id: 1}
@@ -241,8 +311,22 @@ Client side:
 
 ```js
 const grpc = require('grpc');
+const protoLoader = require('@grpc/proto-loader');
 const grpc_promise = require('grpc-promise');
-const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
+
+const packageDefinition = protoLoader.loadSync(
+  __dirname + '/protobuf/test.proto',
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+  }
+);
+
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
+const test_proto = protoDescriptor.test;
 
 function main() {
   const client = new test_proto.Test('localhost:50052', grpc.credentials.createInsecure());
@@ -272,7 +356,21 @@ Server side:
 
 ```js
 const grpc = require('grpc');
-const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
+const protoLoader = require('@grpc/proto-loader');
+
+const packageDefinition = protoLoader.loadSync(
+  __dirname + '/protobuf/test.proto',
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+  }
+);
+
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
+const test_proto = protoDescriptor.test;
 
 const testStreamStream = function (call) {
   call.on('data', function (message) {
@@ -306,8 +404,22 @@ Client side:
 
 ```js
 const grpc = require('grpc');
+const protoLoader = require('@grpc/proto-loader');
 const grpc_promise = require('grpc-promise');
-const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
+
+const packageDefinition = protoLoader.loadSync(
+  __dirname + '/protobuf/test.proto',
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+  }
+);
+
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
+const test_proto = protoDescriptor.test;
 
 function main() {
   const client = new test_proto.Test('localhost:50052', grpc.credentials.createInsecure());
@@ -339,8 +451,22 @@ Client side:
 
 ```js
 const grpc = require('grpc');
+const protoLoader = require('@grpc/proto-loader');
 const grpc_promise = require('grpc-promise');
-const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
+
+const packageDefinition = protoLoader.loadSync(
+  __dirname + '/protobuf/test.proto',
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+  }
+);
+
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
+const test_proto = protoDescriptor.test;
 
 function main() {
   const client = new test_proto.Test('localhost:50052', grpc.credentials.createInsecure());
