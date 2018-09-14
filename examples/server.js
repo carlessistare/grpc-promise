@@ -1,5 +1,19 @@
 const grpc = require('grpc');
-const test_proto = grpc.load(__dirname + '/protobuf/test.proto').test;
+const protoLoader = require('@grpc/proto-loader');
+
+const packageDefinition = protoLoader.loadSync(
+  __dirname + '/protobuf/test.proto',
+  {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+  }
+);
+
+const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
+const test_proto = protoDescriptor.test;
 
 const testSimpleSimple = function (call, callback) {
   console.log('Server: Simple Message Received = ', call.request); // Server: Simple Message Received = {id: 1}
