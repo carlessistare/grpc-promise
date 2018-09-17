@@ -22,7 +22,8 @@ function main() {
   const meta = new grpc.Metadata();
   meta.add('key', 'value');
 
-  grpc_promise.promisifyAll(client, {timeout: 100, metadata: meta}); // Optional timeout definition, defaults = 50
+  // Optional timeout definition, defaults = 50
+  grpc_promise.promisifyAll(client, { timeout: 100, metadata: meta, deadline: Date.now() + 1000 });
 
   let t = client.testStreamStream();
   t.sendMessage({})

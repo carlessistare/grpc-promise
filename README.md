@@ -18,6 +18,7 @@
   - [Server Stream Request](#server-stream-request)
   - [Bidirectional Stream Request](#bidirectional-stream-request)
   - [Request with Metadata](#request-with-metadata)
+  - [Using Deadline](#using-deadline)
   - [Promisify single function](#promisify-single-function)
 - [MIT License](#mit-license)
 
@@ -487,6 +488,15 @@ function main() {
 }
 
 main();
+```
+
+### Using Deadline
+
+The deadline parameter is used to to set a timestamp in millisenconds for the entire call to complete:
+
+```js
+// We give a deadline of 1 second (= 1000ms)
+grpc_promise.promisifyAll(client, deadline: Date.now() + 1000);
 ```
 
 ### Promisify single function

@@ -6,7 +6,7 @@ describe('Unary Request', function () {
 
     it('Test ok', function () {
       const client = {};
-      const makeUnaryRequest = function (request, metadata, callback) {
+      const makeUnaryRequest = function (request, metadata, options, callback) {
         callback(null, request);
       };
       makeUnaryRequest.requestStream = false;
@@ -24,7 +24,7 @@ describe('Unary Request', function () {
 
     it('Test ko', function () {
       const client = {};
-      const makeUnaryRequest = function (request, metadata, callback) {
+      const makeUnaryRequest = function (request, metadata, options, callback) {
         callback('timeout');
       };
       makeUnaryRequest.requestStream = false;
@@ -48,7 +48,7 @@ describe('Unary Request', function () {
 
     it('Test ok', function () {
       const client = {};
-      const makeUnaryRequest = function (request, metadata, callback) {
+      const makeUnaryRequest = function (request, metadata, options, callback) {
         callback(null, request);
       };
       makeUnaryRequest.requestStream = false;
