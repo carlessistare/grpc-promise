@@ -7,7 +7,7 @@ describe('Client Stream Request', function () {
 
     it('Test ok', function () {
       const client = {};
-      const makeClientStreamRequest = function (metadata, callback) {
+      const makeClientStreamRequest = function (metadata, options, callback) {
         return new ClientStreamMock({callback: callback});
       };
       makeClientStreamRequest.requestStream = true;
@@ -29,7 +29,7 @@ describe('Client Stream Request', function () {
 
     it('Test ko', function () {
       const client = {};
-      const makeClientStreamRequest = function (metadata, callback) {
+      const makeClientStreamRequest = function (metadata, options, callback) {
         var stream = new ClientStreamMock();
         stream.on('finish', function () {
           callback('some_error');
@@ -60,7 +60,7 @@ describe('Client Stream Request', function () {
 
     it('Test ok', function (done) {
       const client = {};
-      const makeClientStreamRequest = function (metadata, callback) {
+      const makeClientStreamRequest = function (metadata, options, callback) {
         return new ClientStreamMock({callback: callback});
       };
       makeClientStreamRequest.requestStream = true;
