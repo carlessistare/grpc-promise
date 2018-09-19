@@ -22,7 +22,7 @@ function main() {
   const meta = new grpc.Metadata();
   meta.add('key', 'value');
 
-  grpc_promise.promisify(client, ['testSimpleSimple'], { metadata: meta, deadline: Date.now() + 1000 });
+  grpc_promise.promisify(client, ['testSimpleSimple'], { metadata: meta, timeout: 1000 }); // timeout in milliseconds
 
   client.testSimpleSimple()
     .sendMessage({id: 1})

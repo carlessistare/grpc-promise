@@ -426,7 +426,10 @@ const test_proto = protoDescriptor.test;
 function main() {
   const client = new test_proto.Test('localhost:50052', grpc.credentials.createInsecure());
   
-  grpc_promise.promisifyAll(client, {timeout: 100}); // Optional timeout definition, defaults = 50
+  // Optional `timeout_message` out definition (defaults = 50)
+  // for the response of a single message of a bidirectional stream function in grpc.
+  // Don't confuse with `timeout` parameter used to set a deadline to the open connection.
+  grpc_promise.promisifyAll(client, { timeout_message: 100 });
     
   t = client.testStreamStream();
   t.sendMessage({})
@@ -492,11 +495,14 @@ main();
 
 ### Using Deadline
 
-The deadline parameter is used to to set a timestamp in millisenconds for the entire call to complete:
+The deadline parameter is used to to set a timestamp in millisenconds for the entire call to complete.
+For architectural reasons and knowing that the original deadline is passed as a timestamp,
+grpc-module forces to set a timeout parameter in milliseconds.
+It means the number of milliseconds we want to wait as most for the response:
 
 ```js
 // We give a deadline of 1 second (= 1000ms)
-grpc_promise.promisifyAll(client, deadline: Date.now() + 1000);
+grpc_promise.promisifyAll(client, { timeout: 1000 });
 ```
 
 ### Promisify single function
