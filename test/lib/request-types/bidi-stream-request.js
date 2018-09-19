@@ -79,7 +79,7 @@ describe('Bidi Stream Request', function () {
         bidiStreamReq: makeBidiStreamRequest
       });
 
-      grpc_promise.promisifyAll(client, {timeout: 80});
+      grpc_promise.promisifyAll(client, {timeout_message: 80});
 
       const s = client.bidiStreamReq();
       return Promise.all([s.sendMessage({}), s.sendMessage({})])

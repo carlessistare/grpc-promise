@@ -23,7 +23,7 @@ function main() {
   meta.add('key', 'value');
 
   // Optional timeout definition, defaults = 50
-  grpc_promise.promisifyAll(client, { timeout: 100, metadata: meta, deadline: Date.now() + 1000 });
+  grpc_promise.promisifyAll(client, { timeout_message: 100, metadata: meta, timeout: 1000 }); // timeout in milliseconds
 
   let t = client.testStreamStream();
   t.sendMessage({})
