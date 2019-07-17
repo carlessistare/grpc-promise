@@ -8,7 +8,7 @@
 
 ## Table of contents
 
-- [What's gRPC](#what-s-grpc)
+- [What's gRPC](#whats-grpc)
 - [Introduction to grpc-promise](#introduction-to-grpc-promise)
 - [Installation](#installation)
 - [API by example](#api-by-example)
